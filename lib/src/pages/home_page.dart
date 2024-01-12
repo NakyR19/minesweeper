@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                     height: buttonHeight,
                     child: ElevatedButton(
                       onPressed: () {
-                        print('Normal selected');
+                        Navigator.pushNamed(context, AppRoutes.mineweeper);
                       },
                       child: const Text('Normal'),
                     ),
@@ -104,9 +104,7 @@ class _HomePageState extends State<HomePage> {
                     width: buttonWidth,
                     height: buttonHeight,
                     child: ElevatedButton(
-                      onPressed: () {
-                        print('Challenge selected');
-                      },
+                      onPressed: () {},
                       child: const Text('Challenge'),
                     ),
                   ),

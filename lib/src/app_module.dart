@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mineweeper/src/pages/home_page.dart';
+import 'package:mineweeper/src/pages/mineweeper.dart';
 import 'package:mineweeper/src/pages/theme_page.dart';
 
 import 'utils/app_routes.dart';
@@ -18,6 +19,7 @@ class MineweeperApp extends StatelessWidget {
       routes: {
         AppRoutes.home: (context) => const HomePage(),
         AppRoutes.chooseThemePage: (context) => const ChooseThemePage(),
+        AppRoutes.mineweeper: (context) => const MineWeeper(),
       },
     );
   }
