@@ -3,11 +3,13 @@ import 'package:mineweeper/src/models/board.dart';
 import 'package:mineweeper/src/models/field.dart';
 import 'package:mineweeper/src/widgets/board_widget.dart';
 import 'package:mineweeper/src/widgets/result_widget.dart';
-
+import 'dart:async';
 import '../models/exception.dart';
 
 class MineWeeper extends StatefulWidget {
-  const MineWeeper({super.key});
+  const MineWeeper({required this.isChallenge, super.key});
+
+  final bool isChallenge;
 
   @override
   State<MineWeeper> createState() => _MineWeeperState();
@@ -16,6 +18,8 @@ class MineWeeper extends StatefulWidget {
 class _MineWeeperState extends State<MineWeeper> {
   bool? _won;
   Board? _board;
+  int _timerValue = 60;
+  int _timerValueNormal = 0;
 
   _open(Field f) {
     if (_won != null) {
@@ -63,11 +67,68 @@ class _MineWeeperState extends State<MineWeeper> {
     return _board!; // ! = not null
   }
 
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Welcome to MineWeeper!'),
+            content: const Text('Press OK to start playing!'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _startTimer();
+                  },
+                  child: const Text('OK'))
+            ],
+          );
+        });
+  }
+
+  _startTimer() {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      if (widget.isChallenge) {
+        if (_timerValue == 0) {
+          timer.cancel();
+          setState(() {
+            _won = false;
+          });
+        } else {
+          setState(() {
+            _timerValue--;
+          });
+        }
+      } else {
+        setState(() {
+          _timerValueNormal++;
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showDialog();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MineWeeper'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.timer),
+            const SizedBox(width: 5),
+            Text(widget.isChallenge
+                ? 'Timer: $_timerValue'
+                : 'Timer: $_timerValueNormal'),
+          ],
+        ),
         centerTitle: true,
         elevation: 5,
       ),
@@ -82,6 +143,8 @@ class _MineWeeperState extends State<MineWeeper> {
         if (_won != null) ...[
           ResultWidget(
             won: _won!,
+            isChallenge: widget.isChallenge,
+            time: widget.isChallenge ? _timerValue : _timerValueNormal,
           ),
         ],
       ]),

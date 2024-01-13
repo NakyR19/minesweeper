@@ -44,7 +44,7 @@ class _ChooseThemePageState extends State<ChooseThemePage> {
               padding: const EdgeInsets.all(2.8215),
               child: GestureDetector(
                   onTap: () {
-                    print('Imagem $i clicada');
+                    // print('Imagem $i clicada');
                   },
                   child: Center(
                     child: Container(

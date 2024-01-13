@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mineweeper/src/utils/app_routes.dart';
 
+import 'mineweeper.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -33,17 +35,15 @@ class _HomePageState extends State<HomePage> {
         appBar: appBar,
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(
+                width: availableWidth * 0.8,
+                height: availableHeight * 0.5,
+                child: Image.asset('assets/gif/logo.gif'),
+              ),
               if (_showPlayAndChooseTheme) ...[
                 // Se _showButtons for true, mostra os botões
-                const Text(
-                  'MineWeeper',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -69,7 +69,8 @@ class _HomePageState extends State<HomePage> {
                     height: buttonHeight,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.chooseThemePage);
+                        Navigator.popAndPushNamed(
+                            context, AppRoutes.chooseThemePage);
                       },
                       child: const Text('Choose the Theme'),
                     ),
@@ -92,7 +93,11 @@ class _HomePageState extends State<HomePage> {
                     height: buttonHeight,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.mineweeper);
+                        Navigator.popAndPushNamed(
+                          context,
+                          AppRoutes.mineweeper,
+                          arguments: false,
+                        );
                       },
                       child: const Text('Normal'),
                     ),
@@ -104,7 +109,13 @@ class _HomePageState extends State<HomePage> {
                     width: buttonWidth,
                     height: buttonHeight,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.popAndPushNamed(
+                          context,
+                          AppRoutes.mineweeper,
+                          arguments: true,
+                        );
+                      },
                       child: const Text('Challenge'),
                     ),
                   ),
