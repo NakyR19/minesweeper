@@ -18,9 +18,6 @@ class ResultWidget extends StatelessWidget {
     if (won && isChallenge) {
       message =
           'You did it, you completed the challenge in $completedTime seconds!';
-    } else if (!won && isChallenge) {
-      message =
-          'You did not manage to complete the challenge in the allotted time, try again!';
     } else if (won && !isChallenge) {
       message = 'You won, you managed to complete the game in $time seconds!';
     } else {
@@ -33,7 +30,7 @@ class ResultWidget extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.home);
+            Navigator.of(context).popAndPushNamed(AppRoutes.home);
           },
           child: const Text('OK'),
         ),

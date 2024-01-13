@@ -18,8 +18,9 @@ class MineWeeper extends StatefulWidget {
 class _MineWeeperState extends State<MineWeeper> {
   bool? _won;
   Board? _board;
-  int _timerValue = 60;
+  int _timerValue = 120;
   int _timerValueNormal = 0;
+  Timer? _timer;
 
   _open(Field f) {
     if (_won != null) {
@@ -61,7 +62,7 @@ class _MineWeeperState extends State<MineWeeper> {
       _board = Board(
         rows: qtfyRows,
         columns: qtfyColumns,
-        qtfyMines: 2,
+        qtfyMines: 30,
       );
     }
     return _board!; // ! = not null
@@ -87,8 +88,10 @@ class _MineWeeperState extends State<MineWeeper> {
   }
 
   _startTimer() {
-    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-      if (widget.isChallenge) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      if (_won == true) {
+        timer.cancel();
+      } else if (widget.isChallenge) {
         if (_timerValue == 0) {
           timer.cancel();
           setState(() {
@@ -113,6 +116,12 @@ class _MineWeeperState extends State<MineWeeper> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showDialog();
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

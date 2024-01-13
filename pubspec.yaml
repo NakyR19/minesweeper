@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -74,6 +75,20 @@ flutter:
     - assets\images\3.jpg
     - assets\images\1.jpg
     - assets\gif\logo.gif
+    - assets\images\0p.png
+    - assets\images\1p.png
+    - assets\images\2p.png
+    - assets\images\3p.png
+    - assets\images\4p.png
+    - assets\images\5p.png
+    - assets\images\6p.png
+    - assets\images\7p.png
+    - assets\images\8p.png
+    - assets\images\ancorabranca.png
+    - assets\images\ancoravermelha.png
+    - assets\images\casanormalpirata.png
+    - assets\images\pirateflag.png
+    - assets\images\anchorweeper.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -21,7 +21,8 @@ class MineweeperApp extends StatelessWidget {
         AppRoutes.home: (context) => const HomePage(),
         AppRoutes.chooseThemePage: (context) => const ChooseThemePage(),
         AppRoutes.mineweeper: (context) => MineWeeper(
-            isChallenge: ModalRoute.of(context)!.settings.arguments as bool),
+              isChallenge: ModalRoute.of(context)!.settings.arguments as bool,
+            ),
       },
     );
   }

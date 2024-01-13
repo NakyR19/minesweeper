@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mineweeper/src/utils/app_routes.dart';
+import 'package:provider/provider.dart';
 
-import 'mineweeper.dart';
+import '../models/theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +16,14 @@ class _HomePageState extends State<HomePage> {
   bool _showNormalAndChallenge = false;
   @override
   Widget build(BuildContext context) {
+    final themeChanger = Provider.of<ThemeChanger>(context);
+    String asset;
+
+    if (themeChanger.theme) {
+      asset = 'assets/images/anchorweeper.png';
+    } else {
+      asset = 'assets/gif/logo.gif';
+    }
     final PreferredSizeWidget appBar = AppBar(
       title: const Text("MineWeeper"),
       centerTitle: true,
@@ -40,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: availableWidth * 0.8,
                 height: availableHeight * 0.5,
-                child: Image.asset('assets/gif/logo.gif'),
+                child: Image.asset(asset),
               ),
               if (_showPlayAndChooseTheme) ...[
                 // Se _showButtons for true, mostra os botões
