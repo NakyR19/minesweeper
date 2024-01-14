@@ -19,7 +19,7 @@ class MineweeperApp extends StatelessWidget {
       onGenerateRoute: AppRoutes.generateRoute,
       routes: {
         AppRoutes.home: (context) => const HomePage(),
-        AppRoutes.chooseThemePage: (context) => const ChooseThemePage(),
+        AppRoutes.chooseThemePage: (context) => ChooseThemePage(),
         AppRoutes.mineweeper: (context) => MineWeeper(
               isChallenge: ModalRoute.of(context)!.settings.arguments as bool,
             ),

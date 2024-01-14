@@ -20,9 +20,9 @@ class _HomePageState extends State<HomePage> {
     String asset;
 
     if (themeChanger.theme) {
-      asset = 'assets/images/anchorweeper.png';
+      asset = 'assets/images/anchorlogo.png';
     } else {
-      asset = 'assets/gif/logo.gif';
+      asset = 'assets/images/logo2.png';
     }
     final PreferredSizeWidget appBar = AppBar(
       title: const Text("MineWeeper"),
@@ -41,115 +41,118 @@ class _HomePageState extends State<HomePage> {
     final buttonWidth = availableWidth * 0.4;
     final buttonHeight = availableHeight * 0.05;
     return Scaffold(
-        appBar: appBar,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: availableWidth * 0.8,
-                height: availableHeight * 0.5,
-                child: Image.asset(asset),
+      appBar: appBar,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: availableWidth * 0.8,
+              height: availableHeight * 0.5,
+              child: Image.asset(asset),
+            ),
+            if (_showPlayAndChooseTheme) ...[
+              // Se _showButtons for true, mostra os botões
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _showNormalAndChallenge =
+                            true; // Altera o estado para mostrar os botões
+                        _showPlayAndChooseTheme =
+                            false; // Altera o estado para ocultar os botôes
+                      });
+                    },
+                    child: const Text('Play'),
+                  ),
+                ),
               ),
-              if (_showPlayAndChooseTheme) ...[
-                // Se _showButtons for true, mostra os botões
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _showNormalAndChallenge =
-                              true; // Altera o estado para mostrar os botões
-                          _showPlayAndChooseTheme =
-                              false; // Altera o estado para ocultar os botôes
-                        });
-                      },
-                      child: const Text('Play'),
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.popAndPushNamed(
+                          context, AppRoutes.chooseThemePage);
+                    },
+                    child: const Text('Choose the Theme'),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.popAndPushNamed(
-                            context, AppRoutes.chooseThemePage);
-                      },
-                      child: const Text('Choose the Theme'),
-                    ),
-                  ),
-                ),
-              ],
-              if (_showNormalAndChallenge) ...[
-                // Se _showButtons for true, mostra os botões
-                const Text(
-                  'Choose the Mode',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.popAndPushNamed(
-                          context,
-                          AppRoutes.mineweeper,
-                          arguments: false,
-                        );
-                      },
-                      child: const Text('Normal'),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.popAndPushNamed(
-                          context,
-                          AppRoutes.mineweeper,
-                          arguments: true,
-                        );
-                      },
-                      child: const Text('Challenge'),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: buttonWidth,
-                    height: buttonHeight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _showNormalAndChallenge =
-                              false; // Altera o estado para ocultar os botôes
-                          _showPlayAndChooseTheme =
-                              true; // Altera o estado para mostrar os botões
-                        });
-                      },
-                      child: const Text('Back'),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ],
-          ),
-        ));
+            if (_showNormalAndChallenge) ...[
+              // Se _showButtons for true, mostra os botões
+              const Text(
+                'Choose the Mode',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.popAndPushNamed(
+                        context,
+                        AppRoutes.mineweeper,
+                        arguments: false,
+                      );
+                    },
+                    child: const Text('Normal'),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.popAndPushNamed(
+                        context,
+                        AppRoutes.mineweeper,
+                        arguments: true,
+                      );
+                    },
+                    child: const Text('Challenge'),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          _showNormalAndChallenge =
+                              false; // Altera o estado para ocultar os botôes
+                          _showPlayAndChooseTheme =
+                              true; // Altera o estado para mostrar os botões
+                        },
+                      );
+                    },
+                    child: const Text('Back'),
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
   }
 }
