@@ -15,6 +15,7 @@ class MineweeperApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.home,
       onGenerateRoute: AppRoutes.generateRoute,
       routes: {

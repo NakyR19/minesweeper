@@ -14,7 +14,7 @@ class ResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String message;
-    int completedTime = 120 - time;
+    int completedTime = 180 - time;
     if (won && isChallenge) {
       message =
           'You did it, you completed the challenge in $completedTime seconds!';
