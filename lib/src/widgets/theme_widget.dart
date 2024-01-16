@@ -28,6 +28,24 @@ class ThemeWidget extends StatelessWidget {
     }
   }
 
+  void abrirUrlFlat() async {
+    const url = 'https://www.flaticon.com';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void abrirUrlCoder() async {
+    const url = 'https://github.com/cod3rcursos/campo-minado-flutter';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     void onPressedMine() {
@@ -102,13 +120,29 @@ class ThemeWidget extends StatelessWidget {
           SizedBox(
             height: availableHeight * 0.05,
           ),
-          Text('Credits:\n'
-              'Fork of: Cod3r Cursos\n'
+          const Text('Credits:\n'
               'Developed by: Rafael Santos\n'),
           InkWell(
             onTap: abrirUrl,
-            child: Text('Meu Github'),
-          )
+            child: const Text(
+              'My Github\n',
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+          InkWell(
+            onTap: abrirUrlCoder,
+            child: const Text(
+              'Fork of: Cod3r Cursos\n',
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+          InkWell(
+            onTap: abrirUrlFlat,
+            child: const Text(
+              'Icons made by Freepik',
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
         ],
       ),
     );
