@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../pages/mineweeper.dart';
+import '../pages/minesweeper.dart';
 
 class AppRoutes {
   static const home = '/';
   static const chooseThemePage = '/chooseThemePage';
-  static const mineweeper = '/mineweeper';
+  static const minesweeper = '/minesweeper';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case mineweeper:
+      case minesweeper:
         bool isChallenge = settings.arguments as bool;
         return MaterialPageRoute(
-          builder: (_) => MineWeeper(isChallenge: isChallenge),
+          builder: (_) => MineSweeper(isChallenge: isChallenge),
         );
       default:
         return MaterialPageRoute(

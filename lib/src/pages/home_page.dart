@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mineweeper/src/utils/app_routes.dart';
+import '../utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
 import '../models/theme.dart';
@@ -20,12 +20,12 @@ class _HomePageState extends State<HomePage> {
     String asset;
 
     if (themeChanger.theme) {
-      asset = 'assets/images/anchorlogo.png';
+      asset = 'assets/images/anchorsweeperlogo.png';
     } else {
-      asset = 'assets/images/logo2.png';
+      asset = 'assets/images/minesweeper.png';
     }
     final PreferredSizeWidget appBar = AppBar(
-      title: const Text("MineWeeper"),
+      title: const Text("MineSweeper"),
       centerTitle: true,
       elevation: 5,
     );
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.popAndPushNamed(
                         context,
-                        AppRoutes.mineweeper,
+                        AppRoutes.minesweeper,
                         arguments: false,
                       );
                     },
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       Navigator.popAndPushNamed(
                         context,
-                        AppRoutes.mineweeper,
+                        AppRoutes.minesweeper,
                         arguments: true,
                       );
                     },

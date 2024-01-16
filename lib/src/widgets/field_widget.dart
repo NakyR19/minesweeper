@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mineweeper/src/models/field.dart';
+import '../models/field.dart';
 import 'package:provider/provider.dart';
-
 import '../models/theme.dart';
 
 class FieldWidget extends StatelessWidget {

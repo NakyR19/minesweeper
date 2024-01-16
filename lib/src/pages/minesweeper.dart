@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:mineweeper/src/models/board.dart';
-import 'package:mineweeper/src/models/field.dart';
-import 'package:mineweeper/src/widgets/board_widget.dart';
-import 'package:mineweeper/src/widgets/result_widget.dart';
+import '../models/board.dart';
+import '../models/field.dart';
+import '../widgets/board_widget.dart';
+import '../widgets/result_widget.dart';
 import 'dart:async';
 import '../models/exception.dart';
 
-class MineWeeper extends StatefulWidget {
-  const MineWeeper({required this.isChallenge, super.key});
+class MineSweeper extends StatefulWidget {
+  const MineSweeper({required this.isChallenge, super.key});
 
   final bool isChallenge;
 
   @override
-  State<MineWeeper> createState() => _MineWeeperState();
+  State<MineSweeper> createState() => _MineSweeperState();
 }
 
-class _MineWeeperState extends State<MineWeeper> {
+class _MineSweeperState extends State<MineSweeper> {
   bool? _won;
   Board? _board;
-  int _timerValue = 120;
+  int _timerValue = 180;
   int _timerValueNormal = 0;
   Timer? _timer;
 
@@ -73,7 +73,7 @@ class _MineWeeperState extends State<MineWeeper> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Welcome to MineWeeper!'),
+            title: const Text('Welcome to MineSweeper!'),
             content: const Text('Press OK to start playing!'),
             actions: [
               TextButton(

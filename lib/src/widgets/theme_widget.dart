@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../models/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ThemeWidget extends StatelessWidget {
   const ThemeWidget({
@@ -18,6 +18,15 @@ class ThemeWidget extends StatelessWidget {
     content: Text('Theme changed successfully!'),
     duration: Duration(seconds: 1),
   );
+
+  void abrirUrl() async {
+    const url = 'https://github.com/NakyR19';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +61,7 @@ class ThemeWidget extends StatelessWidget {
                   child: SizedBox(
                       width: cardWidth,
                       height: cardHeight,
-                      child: Image.asset('assets/images/logo2.png')),
+                      child: Image.asset('assets/images/minesweeper.png')),
                 ),
                 Positioned(
                   bottom: 0,
@@ -76,7 +85,7 @@ class ThemeWidget extends StatelessWidget {
                   child: SizedBox(
                     width: cardWidth,
                     height: cardHeight,
-                    child: Image.asset('assets/images/anchorlogo.png'),
+                    child: Image.asset('assets/images/anchorsweeperlogo.png'),
                   ),
                 ),
                 Positioned(
@@ -93,13 +102,13 @@ class ThemeWidget extends StatelessWidget {
           SizedBox(
             height: availableHeight * 0.05,
           ),
-          const Text(
-            'Credits:\n'
-            'Fork of: Cod3r Cursos\n'
-            'Developed by: Rafael Santos\n'
-            'Github: NakyR19\n'
-            'Icons made by Freepik from www.flaticon.com\n',
-          ),
+          Text('Credits:\n'
+              'Fork of: Cod3r Cursos\n'
+              'Developed by: Rafael Santos\n'),
+          InkWell(
+            onTap: abrirUrl,
+            child: Text('Meu Github'),
+          )
         ],
       ),
     );

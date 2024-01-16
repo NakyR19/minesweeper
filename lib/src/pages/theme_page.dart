@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mineweeper/src/utils/app_routes.dart';
+import '../utils/app_routes.dart';
 import '../widgets/theme_widget.dart';
 
 class ChooseThemePage extends StatelessWidget {
-  ChooseThemePage({super.key});
-
-  final List<String> asset = [
-    'assets/images/logo2.png',
-    'assets/images/anchorlogo.png',
-  ];
+  const ChooseThemePage({super.key});
 
   @override
   Widget build(BuildContext context) {

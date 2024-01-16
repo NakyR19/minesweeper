@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mineweeper/src/utils/app_routes.dart';
+import '../utils/app_routes.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget(
